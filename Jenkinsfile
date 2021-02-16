@@ -1,25 +1,21 @@
-#!/usr/bin/env groovy
 pipeline {
-  agent any
-  tools {nodejs "latest"}
-  stages {
-    stage('preflight') {
-      steps {
-        echo sh(returnStdout: true, script: 'env')
-        sh 'node -v'
-      }
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
     }
-    stage('build') {
-      steps {
-        sh 'npm --version'
-        sh 'git log --reverse -1'
-        sh 'npm install'
-      }
-    }
-    stage('test') {
-      steps {
-        sh 'npm test'
-      }
-    }
-  }
 }
