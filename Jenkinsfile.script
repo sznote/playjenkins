@@ -1,0 +1,10 @@
+node('agent1'){
+  stage('Example'){
+      
+    git branch: 'main', 
+            url: "https://github.com/sznote/playjenkins.git"
+    def dockerfile = 'Dockerfile'
+    def customImage = docker.build("my-image:${env.BUILD_ID}", "-f ${dockerfile} .") 
+  
+  }
+}
